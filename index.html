@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traffic Light Simulator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+            background-color: #f0f0f0;
+        }
+
+        .traffic-light {
+            width: 120px;
+            height: 300px;
+            background-color: #333;
+            border-radius: 20px;
+            margin: 0 auto 30px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .light {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 10px auto;
+            border: 3px solid #666;
+            background-color: #222;
+        }
+
+        .red.active {
+            background-color: #ff0000;
+            box-shadow: 0 0 20px #ff0000;
+        }
+
+        .yellow.active {
+            background-color: #ffff00;
+            box-shadow: 0 0 20px #ffff00;
+        }
+
+        .green.active {
+            background-color: #00ff00;
+            box-shadow: 0 0 20px #00ff00;
+        }
+
+        .button {
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+
+        .current-light {
+            margin: 20px 0;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Traffic Light Simulator</h1>
+    
+    <div class="traffic-light">
+        <div class="light red active" id="redLight"></div>
+        <div class="light yellow" id="yellowLight"></div>
+        <div class="light green" id="greenLight"></div>
+    </div>
+    
+    <div class="current-light">
+        Current Light: <span id="currentLightText">RED</span>
+    </div>
+    
+    <button class="button" onclick="changeLight()">Change Light</button>
+
+    <script>
+        // Variable to track current light
+        let currentLight = "red";
+
+        function changeLight() {
+            // Remove active class from all lights
+            document.getElementById("redLight").classList.remove("active");
+            document.getElementById("yellowLight").classList.remove("active");
+            document.getElementById("greenLight").classList.remove("active");
+            
+            // Use if-else to decide next light
+            if (currentLight === "red") {
+                currentLight = "green";
+                document.getElementById("greenLight").classList.add("active");
+                document.getElementById("currentLightText").textContent = "GREEN";
+            } else if (currentLight === "green") {
+                currentLight = "yellow";
+                document.getElementById("yellowLight").classList.add("active");
+                document.getElementById("currentLightText").textContent = "YELLOW";
+            } else if (currentLight === "yellow") {
+                currentLight = "red";
+                document.getElementById("redLight").classList.add("active");
+                document.getElementById("currentLightText").textContent = "RED";
+            }
+        }
+    </script>
+</body>
+</html>
